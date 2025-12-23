@@ -48,4 +48,12 @@ object List {
             case Nil => sys.error("Empty list")
             case Cons(head, Nil) => Nil
             case Cons(head, tail) => Cons(head, init(tail))
+    
+    def foldRight[A, B](as: List[A], acc: B, f: (A, B) => B): B = 
+        as match
+            case Nil => acc
+            case Cons(head, tail) => foldRight(tail, f(head, acc), f)     
+
+    def length[A](as: List[A]): Int =
+        foldRight(as, 0, (_, acc) => acc+1)  
 }
