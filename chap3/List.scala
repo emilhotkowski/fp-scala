@@ -43,4 +43,9 @@ object List {
                 Cons(head, tail)
             }
         
+    def init[A](as: List[A]): List[A] =
+        as match
+            case Nil => sys.error("Empty list")
+            case Cons(head, Nil) => Nil
+            case Cons(head, tail) => Cons(head, init(tail))
 }
