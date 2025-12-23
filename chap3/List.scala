@@ -21,4 +21,7 @@ object List {
         case Nil => sys.error("Empty list error")
         case Cons(head, tail) => tail
     
+    def setHead[A](newHead: A, l: List[A]): List[A] = l match
+        case Nil => sys.error("Cannot set new head on an empty list")
+        case Cons(head, tail) => Cons(newHead, tail)
 }
