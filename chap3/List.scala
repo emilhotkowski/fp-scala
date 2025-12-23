@@ -24,4 +24,13 @@ object List {
     def setHead[A](newHead: A, l: List[A]): List[A] = l match
         case Nil => sys.error("Cannot set new head on an empty list")
         case Cons(head, tail) => Cons(newHead, tail)
+
+    def drop[A](as: List[A], n: Int): List[A] = 
+        if (n == 0) {
+            as
+        } else {
+            as match
+                case Nil => sys.error("List is too short")
+                case Cons(head, tail) => drop(tail, n-1)
+        }
 }
