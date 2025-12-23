@@ -33,4 +33,14 @@ object List {
                 case Nil => sys.error("List is too short")
                 case Cons(head, tail) => drop(tail, n-1)
         }
+
+    def dropWhile[A](as: List[A], f: A => Boolean): List[A] =
+        as match
+            case Nil => Nil
+            case Cons(head, tail) => if(f(head)) {
+                dropWhile(tail, f)
+            } else {
+                Cons(head, tail)
+            }
+        
 }
